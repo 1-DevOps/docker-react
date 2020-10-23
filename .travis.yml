@@ -5,5 +5,19 @@ before-install:
     - docker build -t naren/docker-react -f Dockerfile.dev .
 script:
     - docker run -e CI=true naren/docker-react npm run test
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "Docker"
+    env: "Docker-env"
+    bucket_name: "elasticbeanstalk-us-east-2-482041836244"
+    bucket_path: "Docker"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_ACCESS _KEY    
+
+
+    
 
 
